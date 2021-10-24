@@ -19,11 +19,23 @@ def ConquestCampaign(N,  M,  L, battalion = []):
     day = 1
     for a in range(len(m)):
         for b in range(len(m[a])):
+            try:
                 if m[a][b] == 10:
-                    day = day + 1
                     m[a][b-1] = 10
-                    m[a][-b] = 10
-                    m[-len(m[a])+a][b] = 10
+                    m[a][-b-1] = 10
+                    m[-a][b] = 10
                     m[a-1][b] = 10
-                continue
+                    day = day +1
+                    break
+                    #m[-a][b] = 10
+            except IndexOutOfRange:
+                pass
+        for e in range(len(m)):
+            for r in range(len(m[e])):
+                if m[e][r] == 10:
+                    m[e][r-1] = 10
+                    m[e][-r-1] = 10
+                    m[-e][r] = 10
+                    m[e-1][r] = 10
+                    break
     return day
