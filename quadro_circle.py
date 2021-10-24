@@ -1,4 +1,17 @@
 import random
+
+
+def check_capture(matrix = []):
+    flag = False
+    for x in range(len(matrix)):
+        for y in range(len(matrix[x])):
+            if  matrix[x][y] != 10:
+                flag = True
+                return flag
+            else:
+                continue
+    return flag
+
 def ConquestCampaign(N,  M,  L, battalion = []):
     N1 = N
     N2 = M
@@ -17,10 +30,11 @@ def ConquestCampaign(N,  M,  L, battalion = []):
                         m[x][y] = 10
                         break
     day = 1
+    check = check_capture(m)
     for a in range(len(m)):
         for b in range(len(m[a])):
             try:
-                if m[a][b] == 10:
+                if m[a][b] == 10 and check == True:
                     m[a][b-1] = 10
                     m[a][-b-1] = 10
                     m[-a][b] = 10
@@ -28,6 +42,8 @@ def ConquestCampaign(N,  M,  L, battalion = []):
                     day = day +1
                     break
                     #m[-a][b] = 10
+                else: 
+                    return day
             except IndexOutOfRange:
                 pass
         for e in range(len(m)):
