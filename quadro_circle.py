@@ -1,7 +1,7 @@
 import random
 def ConquestCampaign(N,  M,  L, battalion = []):
-    N1 = N
-    N2 = M
+    N1 = N+1
+    N2 = M+1
     m = []
     for z in range(N1):
         row = []
@@ -18,29 +18,30 @@ def ConquestCampaign(N,  M,  L, battalion = []):
                         break
     day = 1
     check = check_capture(m)
-    for a in range(len(m)):
-        for b in range(len(m[a])):
+    for a in range(1,len(m)):
+        for b in range(1,len(m[a])):
             try:
                 if m[a][b] == 10 and check == True:
                     m[a][b-1] = 10
-                    m[a][-b-1] = 10
-                    m[-a][b] = 10
+                    m[a][-b] = 10
+                    m[-a+1][b] = 10
                     m[a-1][b] = 10
                     day = day +1
                     break
-                    #m[-a][b] = 10
                 elif check == False: 
                     return day
             except IndexOutOfRange:
                 pass
-        for e in range(len(m)):
-            for r in range(len(m[e])):
-                if m[e][r] == 10:
+        for e in range(1,len(m)):
+            for r in range(1,len(m[e])):
+                if m[e][r] == 10 and check == True:
                     m[e][r-1] = 10
-                    m[e][-r-1] = 10
+                    m[e][-r] = 10
                     m[-e][r] = 10
                     m[e-1][r] = 10
                     break
+                elif check == False: 
+                    return day
     return day
 def check_capture(matrix = []):
     flag = False
@@ -52,4 +53,3 @@ def check_capture(matrix = []):
             else:
                 continue
     return flag
-    
