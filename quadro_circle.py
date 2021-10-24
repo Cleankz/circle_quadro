@@ -44,8 +44,8 @@ def ConquestCampaign(N,  M,  L, battalion = []):
     return day
 def check_capture(matrix = []):
     flag = False
-    for x in range(len(matrix)):
-        for y in range(len(matrix[x])):
+    for x in range(1,len(matrix)):
+        for y in range(1,len(matrix[x])):
             if  matrix[x][y] != 10:
                 flag = True
                 return flag
